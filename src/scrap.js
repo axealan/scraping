@@ -7,14 +7,7 @@ const port = 3000;
 
 let result = '';
 
-async function scrapData(req) {
-  const email = req.query.email || 'astromdigital3@minesbet.com';
-  const password = req.query.password || '123456';
-  const player = req.query.player || 'adsteinhauser@gmail.com';
-  const dateFrom = req.query.dateFrom || '2023-06-01';
-  const dateTo = req.query.dateTo || '2023-06-17';
-  const period = req.query.period || 'date';
-
+async function scrapData(email, password, player, dateFrom, dateTo, period) {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
@@ -59,7 +52,8 @@ async function openReport(browser, page, player, dateFrom, dateTo, period) {
 }
 
 app.get('/', async (req, res) => {
-  await scrapData(req);
+  const { email, password, player, dateFrom, dateTo, period } = req.query;
+  await scrapData(email, password, player, dateFrom, dateTo, period);
   res.send(result);
 });
 

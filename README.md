@@ -41,11 +41,11 @@
               "dateFrom": "2023-06-01",
               "dateTo": "2023-06-13",
               "period": "week"
-}
+                                }
                                  ';
-                              $request = new Request('GET', 'http://localhost:3000', $headers, $body);
-                              $res = $client->sendAsync($request)->wait();
-                              echo $res->getBody();
+                               $request = new Request('GET', 'http://localhost:3000', $headers, $body);
+                                $res = $client->sendAsync($request)->wait();
+                                echo $res->getBody();
 
    
 

@@ -1,14 +1,25 @@
+const puppeteer = require('puppeteer-core');
 const express = require('express');
-const puppeteer = require('puppeteer');
+const app = express();
+const port = process.env.PORT || 3000;
 
 const TARGET = 'https://backoffice.minesbet.com/';
-const app = express();
-const port = 3000;
 
 let result = '';
 
-async function scrapData(email, password, player, dateFrom, dateTo, period) {
-  const browser = await puppeteer.launch({ headless: true });
+async function scrapData(req) {
+  const email = req.query.email || 'astromdigital3@minesbet.com';
+  const password = req.query.password || '123456';
+  const player = req.query.player || 'adsteinhauser@gmail.com';
+  const dateFrom = req.query.dateFrom || '2023-06-01';
+  const dateTo = req.query.dateTo || '2023-06-17';
+  const period = req.query.period || 'date';
+
+  const browser = await puppeteer.launch({
+    executablePath: '/usr/bin/google-chrome-stable',
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    headless: true,
+  });
   const page = await browser.newPage();
 
   await page.goto(`${TARGET}login`);
@@ -52,11 +63,10 @@ async function openReport(browser, page, player, dateFrom, dateTo, period) {
 }
 
 app.get('/', async (req, res) => {
-  const { email, password, player, dateFrom, dateTo, period } = req.query;
-  await scrapData(email, password, player, dateFrom, dateTo, period);
+  await scrapData(req);
   res.send(result);
 });
 
 app.listen(port, () => {
-  console.log(`Servidor rodando em http://localhost:${port}`);
+  console.log(`Servidor rodando na porta ${port}`);
 });

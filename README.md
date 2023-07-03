@@ -14,7 +14,7 @@
 
       Execute o seguinte comando para instalar o Node.js:
    
-         npm init -y && npm install express npm install puppeteer
+         npm init -y && npm install express npm install puppeteer@1.20.0
           
    
    ## Rodando o projeto

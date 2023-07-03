@@ -1,9 +1,9 @@
-const puppeteer = require('puppeteer-core');
 const express = require('express');
-const app = express();
-const port = process.env.PORT || 3000;
+const puppeteer = require('puppeteer');
 
 const TARGET = 'https://backoffice.minesbet.com/';
+const app = express();
+const port = 3000;
 
 let result = '';
 
@@ -15,11 +15,7 @@ async function scrapData(req) {
   const dateTo = req.query.dateTo || '2023-06-17';
   const period = req.query.period || 'date';
 
-  const browser = await puppeteer.launch({
-    executablePath: '/usr/bin/google-chrome-stable',
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    headless: true,
-  });
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
   await page.goto(`${TARGET}login`);
@@ -68,5 +64,5 @@ app.get('/', async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Servidor rodando na porta ${port}`);
+  console.log(`Servidor rodando em http://localhost:${port}`);
 });

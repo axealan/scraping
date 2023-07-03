@@ -8,7 +8,7 @@ const port = 3000;
 let result = '';
 
 async function scrapData(req) {
-  const email = req.query.email || 'astromdigital3@minesbet.com';
+  const email = req.query.email || 'teste@teste.com';
   const password = req.query.password || '123456';
   const player = req.query.player || 'adsteinhauser@gmail.com';
   const dateFrom = req.query.dateFrom || '2023-06-01';

@@ -8,6 +8,15 @@ const port = 3000;
 let result = '';
 
 async function scrapData(req) {
+
+ //sandbox
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
+
+
+  
   const email = req.query.email || 'teste@teste.com';
   const password = req.query.password || '123456';
   const player = req.query.player || 'adsteinhauser@gmail.com';

@@ -22,7 +22,7 @@ async function scrapData(req) {
   const dateTo = req.query.dateTo || '2023-06-17';
   const period = req.query.period || 'date';
 
-  const browser = await puppeteer.launch({ headless: true });
+  
   const page = await browser.newPage();
 
   await page.goto(`${TARGET}login`);

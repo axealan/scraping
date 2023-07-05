@@ -14,8 +14,6 @@ async function scrapData(req) {
         headless: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
-
-
   
   const email = req.query.email || 'teste@teste.com';
   const password = req.query.password || '123456';

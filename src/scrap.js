@@ -8,21 +8,14 @@ const port = 3000;
 let result = '';
 
 async function scrapData(req) {
-
- //sandbox
-    const browser = await puppeteer.launch({
-        headless: true,
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
-    });
-  
-  const email = req.query.email || 'teste@teste.com';
+  const email = req.query.email || 'astromdigital3@minesbet.com';
   const password = req.query.password || '123456';
   const player = req.query.player || 'adsteinhauser@gmail.com';
   const dateFrom = req.query.dateFrom || '2023-06-01';
   const dateTo = req.query.dateTo || '2023-06-17';
   const period = req.query.period || 'date';
 
-  
+  const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
   const page = await browser.newPage();
 
   await page.goto(`${TARGET}login`);
